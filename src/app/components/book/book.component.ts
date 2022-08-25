@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Book } from 'src/app/model/book';
+import { NgForm } from '@angular/forms';
 const apiUrl='http://localhost:3000/books';
 @Component({
   selector: 'app-book',
@@ -17,7 +18,7 @@ export class BookComponent implements OnInit {
     .subscribe((res:Book[])=>{
         this.books=res;
     },
-    err=>this.error=err
+    
     );
   }
   deleteBook(book: Book){
@@ -26,8 +27,15 @@ export class BookComponent implements OnInit {
       const index=this.books.findIndex((b)=>b.id===book.id);
       this.books.splice(index,1);
     },
-        err=>this.error=err
+       
     )
+    
+  }
+  add(form: NgForm){
+    this.http.post<Book>(`${apiUrl}`,form.value)
+    .subscribe((res:Book)=>{
+      this.books.push(form.value);
+    })
     
   }
   ngOnInit(): void {
