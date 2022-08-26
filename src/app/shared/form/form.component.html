@@ -1,0 +1,27 @@
+<form #f="ngForm" (submit)="save(f)">
+    <div class="form-group">
+      <input [ngModel]="active?.title" type="text" class="form-control" name="title" placeholder="Insert Title" >
+    </div>
+    <div class="form-group">
+      <input [ngModel]="active?.author" type="text" class="form-control" name="author" placeholder="Insert author">
+    </div>
+    <div class="form-group">
+      <input [ngModel]="active?.price" type="number" class="form-control" name="price" placeholder="Insert price">
+    </div>
+    <div class="form-group">
+      <input [ngModel]="active?.isbn" type="text" class="form-control" name="isbn" placeholder="Insert isbn">
+    </div>
+    <div class="form-group">
+      <input [ngModel]="active?.description" type="text" class="form-control" name="description" placeholder="Insert description">
+    </div>
+    <div class="form-group">
+      <input type="file" class="form-control" name="img" (change)="readUrl($event)" #selectedFIle>
+    </div>
+    <div  class="mb-3">
+      <img *ngIf="active" [src]="active?.img" height="130">
+      <img *ngIf="this.imageSrc" [src]="this.imageSrc" height="130">
+    </div>
+    <input type="hidden" [ngModel]="this.imageSrc" name="img">
+    <button type="submit" class="btn btn-default" >{{ active ? 'EDIT' : 'ADD'}}</button>
+    <button type="button" class="btn btn-success" (click)="reset(f)">Reset</button>
+  </form>

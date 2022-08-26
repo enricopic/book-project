@@ -1,39 +1,28 @@
 <!-- Main Content -->
 <div class="container">
-  <div class="alert-danger" *ngIf="error">Error</div>
   <div class="row">
     <div class="col-lg-6 col-md-12 mx-0">
       <ul class="list-group">
-        <li *ngFor="let book of books" class="list-group-item">
+        <li *ngFor="let book of books" 
+             class="list-group-item"
+             [ngClass]="{'active': book.id===active?.id}"
+             (click)="setActive(book)">
+             <img [src]="book.img ? book.img : '../../../assets/img/about-bg.jpg'"  height="40">
           {{ book.title }} - {{ book.author }}
           <div class="pull-right">
             <span [style.color]="book.price < 15 ? 'red' : ''">
               {{ book.price | number: "1.2-2" }}
             </span>
-            <i class="fa fa-trash ml-3 cursor-pointer" (click)="deleteBook(book)"></i>
+            <i class="fa fa-trash ml-3 cursor-pointer" (click)="deleteBook($event,book)"></i>
           </div>
         </li>
       </ul>
     </div>
     <div class="col-lg-6 col-md-12 mx-0">
-      <form #f="ngForm" (submit)="add(f)">
-        <div class="form-group">
-          <input [ngModel] type="text" class="form-control" name="title" placeholder="Insert Title" >
-        </div>
-        <div class="form-group">
-          <input [ngModel] type="text" class="form-control" name="author" placeholder="Insert author">
-        </div>
-        <div class="form-group">
-          <input [ngModel] type="number" class="form-control" name="price" placeholder="Insert price">
-        </div>
-        <div class="form-group">
-          <input [ngModel] type="text" class="form-control" name="isbn" placeholder="Insert isbn">
-        </div>
-        <div class="form-group">
-          <input [ngModel] type="text" class="form-control" name="description" placeholder="Insert description">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+      <app-form 
+      [active]="active"
+      [books]="books"
+      [imageSrc]="imageSrc"></app-form>
     </div>
   </div>
 </div>

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Book } from 'src/app/model/book';
 import { NgForm } from '@angular/forms';
-const apiUrl='http://localhost:3000/books';
+import { ReadVarExpr } from '@angular/compiler';
+import { BookServiceService } from 'src/app/services/book-service.service';
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
@@ -10,19 +11,27 @@ const apiUrl='http://localhost:3000/books';
 })
 export class BookComponent implements OnInit {
     books:Book[];
-    error:any;
-  constructor(private http:HttpClient) { }
+    active:Book;
+    imageSrc: any
+  constructor(private http:HttpClient,private bookService: BookServiceService) { 
 
+  }
+
+  
+  
+  
   getAll(){
-    this.http.get<Book[]>(apiUrl)
+    this.bookService.getAll()
     .subscribe((res:Book[])=>{
         this.books=res;
     },
     
     );
   }
-  deleteBook(book: Book){
-    this.http.delete<Book>(`${apiUrl}/${book.id}`)
+  
+  deleteBook(event, book: Book){
+    event.stopPropagation();
+    this.bookService.deleteBook(book)
     .subscribe(()=>{
       const index=this.books.findIndex((b)=>b.id===book.id);
       this.books.splice(index,1);
@@ -31,15 +40,20 @@ export class BookComponent implements OnInit {
     )
     
   }
+  
+  setActive(book:Book){
+    this.active=book;
+  }
   add(form: NgForm){
-    this.http.post<Book>(`${apiUrl}`,form.value)
+    this.bookService.addBook(form)
     .subscribe((res:Book)=>{
       this.books.push(form.value);
+      form.reset();
+      this.imageSrc=null;
     })
-    
   }
   ngOnInit(): void {
-    this.getAll();
+    this.getAll()
   }
 
 }

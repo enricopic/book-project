@@ -1,12 +1,29 @@
 {
   "books": [
     {
-      "title": "il nome della rosa",
-      "author": "Umberto Eco",
-      "price": 158,
-      "isbn": "1515151-15616616",
+      "title": "gregewgw",
+      "author": "Herman Hesse",
+      "price": 22,
+      "isbn": "151616111616",
       "description": null,
-      "id": 1
+      "img": null,
+      "id": 17
+    },
+    {
+      "title": "t32t23",
+      "author": "t32",
+      "price": 21,
+      "isbn": "151616111616",
+      "description": null,
+      "id": 19
+    },
+    {
+      "title": null,
+      "author": null,
+      "price": null,
+      "isbn": null,
+      "description": null,
+      "id": 20
     }
   ]
 }
