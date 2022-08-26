@@ -1,18 +1,18 @@
 <form #f="ngForm" (submit)="save(f)">
     <div class="form-group">
-      <input [ngModel]="active?.title" type="text" class="form-control" name="title" placeholder="Insert Title" >
+      <input [ngModel]="active?.title" type="text" class="form-control" name="title" placeholder="Insert Title" required>
     </div>
     <div class="form-group">
-      <input [ngModel]="active?.author" type="text" class="form-control" name="author" placeholder="Insert author">
+      <input [ngModel]="active?.author" type="text" class="form-control" name="author" placeholder="Insert author" required>
     </div>
     <div class="form-group">
-      <input [ngModel]="active?.price" type="number" class="form-control" name="price" placeholder="Insert price">
+      <input [ngModel]="active?.price" type="number" class="form-control" name="price" placeholder="Insert price" required>
     </div>
     <div class="form-group">
-      <input [ngModel]="active?.isbn" type="text" class="form-control" name="isbn" placeholder="Insert isbn">
+      <input [ngModel]="active?.isbn" type="text" class="form-control" name="isbn" placeholder="Insert isbn" required>
     </div>
     <div class="form-group">
-      <input [ngModel]="active?.description" type="text" class="form-control" name="description" placeholder="Insert description">
+      <input [ngModel]="active?.description" type="text" class="form-control" name="description" placeholder="Insert description" required>
     </div>
     <div class="form-group">
       <input type="file" class="form-control" name="img" (change)="readUrl($event)" #selectedFIle>
@@ -22,6 +22,6 @@
       <img *ngIf="this.imageSrc" [src]="this.imageSrc" height="130">
     </div>
     <input type="hidden" [ngModel]="this.imageSrc" name="img">
-    <button type="submit" class="btn btn-default" >{{ active ? 'EDIT' : 'ADD'}}</button>
+    <button type="submit" class="btn btn-default" [disabled]="f.invalid">{{ active ? 'EDIT' : 'ADD'}}</button>
     <button type="button" class="btn btn-success" (click)="reset(f)">Reset</button>
   </form>

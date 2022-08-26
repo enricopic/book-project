@@ -13,7 +13,8 @@
             <span [style.color]="book.price < 15 ? 'red' : ''">
               {{ book.price | number: "1.2-2" }}
             </span>
-            <i class="fa fa-trash ml-3 cursor-pointer" (click)="deleteBook($event,book)"></i>
+            <i class="fa fa-info-circle mr-2" aria-hidden="true" style="margin-right: 5px; " [routerLink]="['/book',book.id]"></i>
+            <i class="fa fa-trash ml-3 cursor-pointer" style="margin-left: 5px;" (click)="deleteBook($event,book)"></i>
           </div>
         </li>
       </ul>
@@ -22,7 +23,8 @@
       <app-form 
       [active]="active"
       [books]="books"
-      [imageSrc]="imageSrc"></app-form>
+      [imageSrc]="imageSrc"
+      (resetClick)="reset()"></app-form>
     </div>
   </div>
 </div>

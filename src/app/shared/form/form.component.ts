@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Book } from 'src/app/model/book';
 import { BookServiceService } from 'src/app/services/book-service.service';
@@ -13,6 +13,7 @@ export class FormComponent implements OnInit {
   @Input() active: Book;
   @Input() books:Book[];
   @Input() imageSrc:any;
+  @Output() resetClick: EventEmitter<Book>=new EventEmitter<Book>()
   constructor(private http:HttpClient,private bookService:BookServiceService) { 
     
   }
@@ -67,6 +68,7 @@ export class FormComponent implements OnInit {
   reset(form:NgForm){
     this.imageSrc=null;
     this.active=null;
+    this.resetClick.emit();
     form.reset();
   }
   ngOnInit(): void {

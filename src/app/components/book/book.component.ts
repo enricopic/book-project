@@ -52,6 +52,9 @@ export class BookComponent implements OnInit {
       this.imageSrc=null;
     })
   }
+  reset(){
+    this.active=null;
+  }
   ngOnInit(): void {
     this.getAll()
   }
