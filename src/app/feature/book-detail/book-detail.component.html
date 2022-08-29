@@ -1,3 +1,21 @@
-<div *ngIf="book">
-    {{book.title}} {{book.author}}
+<div class="container ">
+    <div class="row"  *ngIf="book">
+        <div class="col-6 ">
+            <app-spinner *ngIf="!book"></app-spinner>
+            <h3>{{book.title}}</h3>
+            <p> di {{book.author}}</p>
+            <p>€ {{book.price | currency}} </p>
+            <p>Isbn: {{book.isbn}}</p>
+            <p>{{book.description | truncate: 700}}</p>
+        </div>
+        <div class="col-6">
+            <div class="img">
+                <img [src]="book.img ? book.img : ''" alt="">
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-outline-warning btn-sm" (click)="goback()">Go back</button>
+</div>
+<div  >
+    
 </div>

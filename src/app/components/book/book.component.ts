@@ -12,7 +12,9 @@ import { BookServiceService } from 'src/app/services/book-service.service';
 export class BookComponent implements OnInit {
     books:Book[];
     active:Book;
-    imageSrc: any
+    imageSrc: any;
+    p:number=1;
+    term:string='';
   constructor(private http:HttpClient,private bookService: BookServiceService) { 
 
   }
