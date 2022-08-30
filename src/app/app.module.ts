@@ -15,6 +15,7 @@ import { SpinnerComponent } from './feature/spinner/spinner.component';
 import { TruncatePipe } from './pipe/truncate.pipe';
 import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { HomeComponent } from './components/home/home.component';
     SpinnerComponent,
     TruncatePipe,
     HomeComponent,
+    LoginComponent,
     
 
    

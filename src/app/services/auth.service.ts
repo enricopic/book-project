@@ -30,18 +30,29 @@ export class AuthService {
         }
         return res['token']
         }),
-        catchError(this.errorHandler())
+        catchError(this.errorHandler)
   );}
   logout(){
-  
+      localStorage.removeItem('token');
+      localStorage.removeItem('expired');
   }
-  private setSession(){
-
+  private setSession(jwt){
+      let expire: number = new Date().getTime() + 10000;
+      localStorage.setItem('token',jwt);
+      localStorage.setItem('expired',expire.toString());
+  }
+  notExpired():boolean{
+      if (localStorage.getItem('expire')) {
+        let expire: number= parseInt(localStorage.getItem('expire'))
+        return new Date().getTime()< expire
+      }
+      return false
   }
   private body(df:NgForm){
     let params=new HttpParams()
     .set('username', df.value.username)
     .set('password', df.value.password);
+    return params;
   }
   
 }
