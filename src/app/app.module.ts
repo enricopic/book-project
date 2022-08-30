@@ -14,6 +14,7 @@ import { NavComponent } from './shared/navbar/nav/nav.component';
 import { SpinnerComponent } from './feature/spinner/spinner.component';
 import { TruncatePipe } from './pipe/truncate.pipe';
 import { Ng2SearchPipeModule } from "ng2-search-filter";
+import { HomeComponent } from './components/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { Ng2SearchPipeModule } from "ng2-search-filter";
     NavComponent,
     SpinnerComponent,
     TruncatePipe,
+    HomeComponent,
     
 
    
